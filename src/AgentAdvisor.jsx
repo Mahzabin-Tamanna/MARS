@@ -3,9 +3,11 @@ import Papa from "papaparse";
 import { Upload, RotateCcw, ArrowRight, ArrowLeft, ChevronDown, ChevronUp, FileText } from "lucide-react";
 
 // ---------------------------------------------------------------------------
-// Synthetic sample data — matches the exact schema of leaderboard_combined.csv
-// Clearly labeled as sample data in the UI. Replace by uploading a real CSV.
+// Embedded results data. Managed by update_data.py -- do not hand-edit the
+// content between the markers below; run the script instead, which pulls
+// the latest CSV from a private data repo and regenerates this block.
 // ---------------------------------------------------------------------------
+// === EMBEDDED_DATA_START ===
 const SAMPLE_CSV = `subject,type,provider,model,performance_pct,avg_cost_usd,avg_latency_s,avg_cwe_introduced,hallucination_rate_pct,total_tasks,cweval_func_pass_pct,cweval_security_pass_pct,cweval_total_runs
 claude_code,agent,anthropic,claude-sonnet-5,76.2,0.21,71.0,0.10,2.1,21,79.4,66.7,63
 claude_code_opus_5,agent,anthropic,claude-opus-5,85.7,0.32,58.0,0.08,1.6,21,88.9,74.6,63
@@ -26,6 +28,7 @@ opencode_kimi27,agent,moonshot,kimi-k2p7-code,52.4,0.04,202.1,0.00,5.0,21,65.1,6
 opencode_deepseek,agent,deepseek,deepseek-v3.2,42.9,0.03,88.4,0.05,6.6,21,63.5,63.5,63
 opencode_qwen,agent,qwen,qwen3-coder-next,38.1,0.06,120.3,0.08,7.1,21,63.5,63.5,63
 `;
+// === EMBEDDED_DATA_END ===
 
 const NUMERIC_FIELDS = [
   "performance_pct", "avg_cost_usd", "avg_latency_s", "avg_cwe_introduced",
@@ -148,10 +151,10 @@ const DIMENSION_LABELS = {
   accuracy: "ACCURACY",
 };
 
-export default function ModelAdvisor() {
+export default function AgentAdvisor() {
   const [rows, setRows] = useState(() => computeScores(parseCSV(SAMPLE_CSV)));
-  const [usingSample, setUsingSample] = useState(true);
   const [fileName, setFileName] = useState(null);
+  const [showAbout, setShowAbout] = useState(false);
   const [step, setStep] = useState(0); // 0..QUESTIONS.length-1 = weight Qs, QUESTIONS.length = type Q, +1 = results
   const [weights, setWeights] = useState({});
   const [agentType, setAgentType] = useState(null);
@@ -171,7 +174,6 @@ export default function ModelAdvisor() {
         const parsed = computeScores(parseCSV(String(ev.target.result)));
         if (parsed.length === 0) throw new Error("empty");
         setRows(parsed);
-        setUsingSample(false);
         setFileName(file.name);
       } catch {
         alert("Couldn't read that file. Make sure it's a CSV matching the expected columns.");
@@ -600,17 +602,79 @@ export default function ModelAdvisor() {
           <div className="data-bar">
             <FileText size={15} color="var(--ink-muted)" />
             <span className="data-bar-label">
-              {usingSample ? (
-                <>Using <span className="data-bar-name">sample data</span> ({rows.length} subjects, synthetic)</>
-              ) : (
-                <>Using <span className="data-bar-name">{fileName}</span> ({rows.length} subjects)</>
+              {!fileName && (
+                <>Showing <span className="data-bar-name">evaluation results</span> ({rows.length} subjects)</>
+              )}
+              {fileName && (
+                <>Comparing against <span className="data-bar-name">{fileName}</span> ({rows.length} subjects)</>
               )}
             </span>
             <button className="btn" onClick={() => fileInputRef.current?.click()} style={{ marginLeft: "auto" }}>
-              <Upload size={13} /> Upload your CSV
+              <Upload size={13} /> Compare your own data
             </button>
             <input ref={fileInputRef} type="file" accept=".csv" onChange={handleUpload} style={{ display: "none" }} />
           </div>
+
+          <button className="about-toggle" onClick={() => setShowAbout((s) => !s)}>
+            {showAbout ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+            {showAbout ? "Hide" : "About this tool & how scoring works"}
+          </button>
+
+          {showAbout && (
+            <div className="about-card">
+              <h3>Why this exists</h3>
+              <p>
+                Most "which AI coding model should I use" advice is either a vendor's own
+                marketing numbers or a single leaderboard score that doesn't reflect what
+                actually matters for your specific use case. A model that tops a general
+                benchmark might be slow, expensive, or prone to introducing security
+                vulnerabilities — tradeoffs that get lost in a single ranking number.
+              </p>
+
+              <h3>What it measures</h3>
+              <p>
+                This tool is built on results from an independent research harness that
+                evaluated multiple frontier and open-source models — both as raw API calls
+                and wrapped in real coding agents (Claude Code, Codex CLI, OpenCode) —
+                across two benchmarks:
+              </p>
+              <ul>
+                <li>
+                  <strong>SWE-bench Verified</strong> — real bug-fix tasks pulled from actual
+                  GitHub repositories, evaluated by applying each model's patch and running
+                  the project's real test suite in an isolated environment.
+                </li>
+                <li>
+                  <strong>CWEval</strong> — coding tasks specifically designed to test whether
+                  generated code introduces common security vulnerabilities (SQL injection,
+                  unsafe deserialization, hardcoded credentials, and more).
+                </li>
+              </ul>
+              <p>
+                For every model and agent, the harness tracked task resolution rate, cost per
+                task, latency, security vulnerabilities introduced, and hallucination rate
+                (references to code that doesn't exist).
+              </p>
+
+              <h3>How the recommendation works</h3>
+              <p>
+                You answer a few questions about what matters most to you. Each answer sets a
+                weight from 0 (ignored) to 3 (dominates the ranking) across five dimensions:
+                performance, security, cost, latency, and accuracy. The tool computes a
+                weighted score for every model and agent in the dataset and shows the full
+                breakdown — not just a winner, but exactly why it won, with the real numbers
+                behind the recommendation.
+              </p>
+
+              <h3>Your own data stays yours</h3>
+              <p>
+                The results shown here are from the author's own evaluation runs. If you'd
+                like to compare against your own benchmark data instead, you can upload a CSV
+                in the same format — it's parsed entirely in your browser and never sent
+                anywhere.
+              </p>
+            </div>
+          )}
         </div>
 
         {!isResults ? (
