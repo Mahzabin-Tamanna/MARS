@@ -1,6 +1,6 @@
-import React, { useState, useMemo, useCallback, useRef } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import Papa from "papaparse";
-import { Upload, RotateCcw, ArrowRight, ArrowLeft, ChevronDown, ChevronUp, FileText } from "lucide-react";
+import { RotateCcw, ArrowRight, ArrowLeft, ChevronDown, ChevronUp, FileText } from "lucide-react";
 
 // ---------------------------------------------------------------------------
 // Embedded results data. Managed by update_data.py -- do not hand-edit the
@@ -152,35 +152,16 @@ const DIMENSION_LABELS = {
 };
 
 export default function AgentAdvisor() {
-  const [rows, setRows] = useState(() => computeScores(parseCSV(SAMPLE_CSV)));
-  const [fileName, setFileName] = useState(null);
+  const [rows] = useState(() => computeScores(parseCSV(SAMPLE_CSV)));
   const [showAbout, setShowAbout] = useState(false);
   const [step, setStep] = useState(0); // 0..QUESTIONS.length-1 = weight Qs, QUESTIONS.length = type Q, +1 = results
   const [weights, setWeights] = useState({});
   const [agentType, setAgentType] = useState(null);
   const [showAllData, setShowAllData] = useState(false);
   const [expandedRow, setExpandedRow] = useState(null);
-  const fileInputRef = useRef(null);
 
   const totalSteps = QUESTIONS.length + 1; // + type question
   const isResults = step >= totalSteps;
-
-  const handleUpload = useCallback((e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      try {
-        const parsed = computeScores(parseCSV(String(ev.target.result)));
-        if (parsed.length === 0) throw new Error("empty");
-        setRows(parsed);
-        setFileName(file.name);
-      } catch {
-        alert("Couldn't read that file. Make sure it's a CSV matching the expected columns.");
-      }
-    };
-    reader.readAsText(file);
-  }, []);
 
   const resetAll = useCallback(() => {
     setStep(0);
@@ -593,26 +574,17 @@ export default function AgentAdvisor() {
       <div className="shell">
         <div className="header">
           <div className="eyebrow">Benchmarked on SWE-bench Verified + CWEval</div>
-          <h1>Which model should you use?</h1>
+          <h1>Agent-Advisor: Which model should you use?</h1>
           <p className="subhead">
-            Answer a few questions about what matters to you. Every recommendation is
-            scored transparently against real benchmark results — you can see the math.
+            Answer a few questions about what matters to you and Agent- Advisor will help you to select right model or agnet for you based on your need and tasks. Every recommendation is
+            scored transparently against real benchmark results.
           </p>
 
           <div className="data-bar">
             <FileText size={15} color="var(--ink-muted)" />
             <span className="data-bar-label">
-              {!fileName && (
-                <>Showing <span className="data-bar-name">evaluation results</span> ({rows.length} subjects)</>
-              )}
-              {fileName && (
-                <>Comparing against <span className="data-bar-name">{fileName}</span> ({rows.length} subjects)</>
-              )}
+              Showing <span className="data-bar-name">evaluation results</span> across {rows.length} models and agents
             </span>
-            <button className="btn" onClick={() => fileInputRef.current?.click()} style={{ marginLeft: "auto" }}>
-              <Upload size={13} /> Compare your own data
-            </button>
-            <input ref={fileInputRef} type="file" accept=".csv" onChange={handleUpload} style={{ display: "none" }} />
           </div>
 
           <button className="about-toggle" onClick={() => setShowAbout((s) => !s)}>
@@ -666,12 +638,11 @@ export default function AgentAdvisor() {
                 behind the recommendation.
               </p>
 
-              <h3>Your own data stays yours</h3>
+              <h3>About the results</h3>
               <p>
-                The results shown here are from the author's own evaluation runs. If you'd
-                like to compare against your own benchmark data instead, you can upload a CSV
-                in the same format — it's parsed entirely in your browser and never sent
-                anywhere.
+                The results shown here are from the author's own evaluation runs, run
+                against a fixed set of tasks under identical conditions for every model and
+                agent, so the comparison is apples-to-apples.
               </p>
             </div>
           )}
