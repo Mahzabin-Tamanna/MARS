@@ -43,7 +43,7 @@ def fetch_private_csv():
     if not TOKEN or not DATA_REPO:
         print("ERROR: set GITHUB_TOKEN and DATA_REPO environment variables first.")
         print('  export GITHUB_TOKEN="ghp_xxxxxxxxxxxx"')
-        print('  export DATA_REPO="your-username/agent-advisor-data"')
+        print('  export DATA_REPO="Mahzabin-Tamanna/agent-advisor-data"')
         sys.exit(1)
 
     url = f"https://api.github.com/repos/{DATA_REPO}/contents/{CSV_PATH_IN_REPO}"
