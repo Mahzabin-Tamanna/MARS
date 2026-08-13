@@ -1,4 +1,4 @@
-# Model Advisor
+# Agent Advisor
 
 A guided Q&A tool that recommends a coding model or agent based on your
 priorities (performance, security, cost, latency, accuracy), scored
