@@ -681,6 +681,12 @@ export default function AgentAdvisor() {
                   <ArrowLeft size={13} /> Back
                 </button>
               </div>
+
+               <div className="nav-row">
+                <button className="btn" onClick={goNext} disabled={step === 0} style={{ opacity: step === 0 ? 0.4 : 1 }}>
+                  <ArrowRight size={13} /> Next
+                </button>
+              </div>
             </div>
 
             <div className="card">
