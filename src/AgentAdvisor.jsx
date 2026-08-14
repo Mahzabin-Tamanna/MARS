@@ -153,7 +153,7 @@ const DIMENSION_LABELS = {
 
 export default function AgentAdvisor() {
   const [rows] = useState(() => computeScores(parseCSV(SAMPLE_CSV)));
-  const [showAbout, setShowAbout] = useState(false);
+  const [activePanel, setActivePanel] = useState(null); // null | "about" | "how"
   const [step, setStep] = useState(0); // 0..QUESTIONS.length-1 = weight Qs, QUESTIONS.length = type Q, +1 = results
   const [weights, setWeights] = useState({});
   const [agentType, setAgentType] = useState(null);
@@ -569,15 +569,84 @@ export default function AgentAdvisor() {
           margin-top: 1.5rem;
           flex-wrap: wrap;
         }
+
+        .nav-tabs {
+          display: flex;
+          gap: 0.5rem;
+          margin-top: 1rem;
+        }
+        .nav-tab {
+          font-family: var(--mono);
+          font-size: 0.78rem;
+          font-weight: 600;
+          padding: 0.45rem 0.9rem;
+          border-radius: 6px;
+          border: 1px solid var(--rule);
+          background: var(--surface);
+          color: var(--ink-muted);
+          cursor: pointer;
+          transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+        }
+        .nav-tab:hover {
+          border-color: var(--accent);
+          color: var(--accent);
+        }
+        .nav-tab.active {
+          background: var(--accent);
+          border-color: var(--accent);
+          color: white;
+        }
+        .nav-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+        .about-card {
+          margin-top: 1rem;
+          padding: 1.75rem 2rem;
+          background: var(--surface);
+          border: 1px solid var(--rule);
+          border-radius: 10px;
+          max-width: 46em;
+          animation: fadeIn 0.3s ease both;
+        }
+        .about-card h3 {
+          font-family: var(--serif);
+          font-size: 1.05rem;
+          font-weight: 600;
+          margin: 1.3rem 0 0.5rem;
+        }
+        .about-card h3:first-child { margin-top: 0; }
+        .about-card p {
+          font-size: 0.92rem;
+          line-height: 1.6;
+          color: var(--ink);
+          margin: 0 0 0.8rem;
+        }
+        .about-card ul {
+          margin: 0 0 0.8rem;
+          padding-left: 1.2rem;
+        }
+        .about-card li {
+          font-size: 0.92rem;
+          line-height: 1.6;
+          margin-bottom: 0.6rem;
+        }
+        .about-card strong { color: var(--accent); }
+        .formula-box {
+          font-family: var(--mono) !important;
+          font-size: 0.85rem !important;
+          background: var(--bg);
+          padding: 0.75rem 1rem;
+          border-radius: 6px;
+          border: 1px solid var(--rule);
+        }
       `}</style>
 
       <div className="shell">
         <div className="header">
           <div className="eyebrow">Benchmarked on SWE-bench Verified + CWEval</div>
-          <h1>Agent-Advisor: Which model should you use?</h1>
+          <h1>Which model should you use?</h1>
           <p className="subhead">
-            Answer a few questions about what matters to you and Agent- Advisor will help you to select right model or agnet for you based on your need and tasks. Every recommendation is
-            scored transparently against real benchmark results.
+            Answer a few questions about what matters to you. Every recommendation is
+            scored transparently against real benchmark results — you can see the math.
           </p>
 
           <div className="data-bar">
@@ -587,12 +656,22 @@ export default function AgentAdvisor() {
             </span>
           </div>
 
-          <button className="about-toggle" onClick={() => setShowAbout((s) => !s)}>
-            {showAbout ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
-            {showAbout ? "Hide" : "About this tool & how scoring works"}
-          </button>
+          <div className="nav-tabs">
+            <button
+              className={`nav-tab ${activePanel === "about" ? "active" : ""}`}
+              onClick={() => setActivePanel(activePanel === "about" ? null : "about")}
+            >
+              About this tool
+            </button>
+            <button
+              className={`nav-tab ${activePanel === "how" ? "active" : ""}`}
+              onClick={() => setActivePanel(activePanel === "how" ? null : "how")}
+            >
+              How it works
+            </button>
+          </div>
 
-          {showAbout && (
+          {activePanel === "about" && (
             <div className="about-card">
               <h3>Why this exists</h3>
               <p>
@@ -628,22 +707,35 @@ export default function AgentAdvisor() {
                 (references to code that doesn't exist).
               </p>
 
-              <h3>How the recommendation works</h3>
-              <p>
-                You answer a few questions about what matters most to you. Each answer sets a
-                weight from 0 (ignored) to 3 (dominates the ranking) across five dimensions:
-                performance, security, cost, latency, and accuracy. The tool computes a
-                weighted score for every model and agent in the dataset and shows the full
-                breakdown — not just a winner, but exactly why it won, with the real numbers
-                behind the recommendation.
-              </p>
-
               <h3>About the results</h3>
               <p>
                 The results shown here are from the author's own evaluation runs, run
                 against a fixed set of tasks under identical conditions for every model and
                 agent, so the comparison is apples-to-apples.
               </p>
+            </div>
+          )}
+
+          {activePanel === "how" && (
+            <div className="about-card">
+              <h3>How the recommendation works</h3>
+              <p>
+                You answer a few questions about what matters most to you. Each answer sets a
+                weight from 0 (ignored) to 3 (dominates the ranking) across five dimensions:
+                performance, security, cost, latency, and accuracy.
+              </p>
+              <p>
+                The tool computes a weighted score for every model and agent in the dataset
+                and shows the full breakdown — not just a winner, but exactly why it won,
+                with the real numbers behind the recommendation.
+              </p>
+              <h3>Scoring formula</h3>
+              <p>
+                Every metric is normalized to a 0–100 scale relative to the other models in
+                the dataset (lower-is-better metrics like cost and latency are inverted
+                first). The final score is a weighted average:
+              </p>
+              <p className="formula-box">overall = Σ(weight × score) ÷ Σ(weight)</p>
             </div>
           )}
         </div>
@@ -679,12 +771,6 @@ export default function AgentAdvisor() {
               <div className="nav-row">
                 <button className="btn" onClick={goBack} disabled={step === 0} style={{ opacity: step === 0 ? 0.4 : 1 }}>
                   <ArrowLeft size={13} /> Back
-                </button>
-              </div>
-
-               <div className="nav-row">
-                <button className="btn" onClick={goNext} disabled={step === 0} style={{ opacity: step === 0 ? 0.4 : 1 }}>
-                  <ArrowRight size={13} /> Next
                 </button>
               </div>
             </div>
