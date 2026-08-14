@@ -731,7 +731,7 @@ export default function AgentAdvisor() {
               </p>
               <p>
                 The tool computes a weighted score for every model and agent in the dataset
-                and shows the full breakdown — not just a winner, but exactly why it won,
+                and shows the full breakdown. The recommender not just a winner, but exactly why it won,
                 with the real numbers behind the recommendation.
               </p>
               <h3>Scoring formula</h3>
