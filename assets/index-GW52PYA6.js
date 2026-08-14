@@ -97,24 +97,22 @@ License: MIT
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */const _s=Lr("RotateCcw",[["path",{d:"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8",key:"1357e3"}],["path",{d:"M3 3v5h5",key:"1xhq8a"}]]),Ep=`subject,type,provider,model,performance_pct,avg_cost_usd,avg_latency_s,avg_cwe_introduced,hallucination_rate_pct,total_tasks,cweval_func_pass_pct,cweval_security_pass_pct,cweval_total_runs
-claude_code,agent,anthropic,claude-sonnet-5,76.2,0.21,71.0,0.10,2.1,21,79.4,66.7,63
-claude_code_opus_5,agent,anthropic,claude-opus-5,85.7,0.32,58.0,0.08,1.6,21,88.9,74.6,63
-claude_api,base,anthropic,claude-sonnet-5,47.6,0.07,9.2,0.05,4.8,21,71.4,60.3,75
-claude_opus_5,base,anthropic,claude-opus-5,52.4,0.09,11.4,0.03,3.8,21,74.6,65.1,63
-codex_cli,agent,openai,gpt-5.3-codex,47.6,0.18,44.0,0.14,3.3,21,73.0,52.4,63
-gpt_api,base,openai,gpt-4.1,33.3,0.03,6.1,0.09,6.2,21,68.3,57.1,63
-gemini_api,base,google,gemini-3.1-pro-preview,66.7,0.14,40.7,0.00,2.9,21,76.2,36.5,63
-opencode_base,agent,google,gemini-3.1-pro-preview,23.8,0.10,27.3,0.02,5.1,21,60.3,38.1,63
-mistral_large3,base,mistral,mistral-large-3,38.1,0.05,11.0,0.00,7.4,12,55.6,44.4,12
-deepseek_v3,base,deepseek,deepseek-v3.2,33.3,0.02,8.7,0.11,8.9,21,60.3,50.8,12
-kimi_2_7,base,moonshot,kimi-k2p7-code,28.6,0.04,13.9,0.16,9.7,21,65.1,65.1,63
-opencode_sonnet5,agent,anthropic,claude-sonnet-5,81.0,0.11,233.6,0.00,1.9,21,76.2,66.7,63
-opencode_opus_5,agent,anthropic,claude-opus-5,76.2,0.15,154.1,0.00,1.4,21,74.6,74.6,63
-opencode_gpt5codex,agent,openai,gpt-5.3-codex,52.4,0.05,95.0,0.00,3.0,21,79.4,68.3,63
-opencode_kimi,agent,moonshot,kimi-k2.5,61.9,0.28,96.2,0.00,4.4,21,71.4,73.0,63
-opencode_kimi27,agent,moonshot,kimi-k2p7-code,52.4,0.04,202.1,0.00,5.0,21,65.1,63.5,63
-opencode_deepseek,agent,deepseek,deepseek-v3.2,42.9,0.03,88.4,0.05,6.6,21,63.5,63.5,63
-opencode_qwen,agent,qwen,qwen3-coder-next,38.1,0.06,120.3,0.08,7.1,21,63.5,63.5,63
+opencode_sonnet5,agent,anthropic,las/bedrock/us.anthropic.claude-sonnet-5,81.0,0.1106,233.6,0.0,0.0,21,76.2,71.4,63.0
+claude_code,agent,anthropic,claude-sonnet-5,76.2,0.3409,84.0,0.0,0.0,21,57.1,42.9,63.0
+claude_code_opus_5,agent,anthropic,claude-opus-5,76.2,0.1465,53.5,0.0,0.0,21,76.2,76.2,63.0
+opencode_opus_5,agent,anthropic,las/bedrock/us.anthropic.claude-opus-5,71.4,0.1602,162.9,0.0,0.0,21,74.6,74.6,63.0
+gemini_api,base,google,gemini/gemini-3.1-pro-preview,66.7,0.1353,40.7,0.0,0.0,21,36.5,33.3,63.0
+claude_code_sonnet5,unknown,unknown,,61.9,0.3409,84.0,0.0,0.0,21,,,
+opencode_kimi,agent,moonshot,las/bedrock/moonshotai.kimi-k2.5,61.9,0.279,96.2,0.0,0.0,21,71.4,55.6,63.0
+codex_cli,agent,openai,openai/gpt-5.3-codex,57.1,0.219,30.9,0.0,0.0,21,23.8,20.6,63.0
+claude_opus_5,base,anthropic,bedrock/us.anthropic.claude-opus-5,52.4,0.0727,8.1,0.0,0.0,21,65.1,68.3,63.0
+opencode_gpt5codex,agent,openai,las/openai/gpt-5.3-codex,52.4,0.053,95.0,0.0,0.0,21,79.4,71.4,63.0
+claude_api,base,anthropic,bedrock/us.anthropic.claude-sonnet-5,47.6,0.0697,11.9,0.0,0.0,21,60.0,40.0,75.0
+gpt_api,base,openai,openai/gpt-4.1,47.6,0.0472,5.4,0.05,0.0,21,57.1,54.0,63.0
+opencode_kimi27,agent,moonshot,las/fireworks_ai/kimi-k2p7-code,42.9,0.0381,224.9,0.0,0.0,21,74.6,60.3,63.0
+mistral_large3,base,mistral,bedrock/mistral.mistral-large-3-675b-instruct,38.1,0.0481,11.0,0.0,0.0,21,50.0,58.3,12.0
+deepseek_v3,base,deepseek,bedrock/deepseek.v3.2,33.3,0.0619,13.5,0.0,0.0,21,50.0,41.7,12.0
+kimi_2_7,base,moonshot,fireworks_ai/kimi-k2p7-code,28.6,0.0753,24.1,0.0,0.0,21,65.1,65.1,63.0
 `,Cp=["performance_pct","avg_cost_usd","avg_latency_s","avg_cwe_introduced","hallucination_rate_pct","total_tasks","cweval_func_pass_pct","cweval_security_pass_pct","cweval_total_runs"];function Np(e){return vp.parse(e,{header:!0,skipEmptyLines:!0}).data.map(n=>{const r={...n};return Cp.forEach(l=>{const i=parseFloat(n[l]);r[l]=Number.isFinite(i)?i:null}),r}).filter(n=>n.subject)}function Yt(e,t,n){const r=e.map(o=>o[t]).filter(o=>o!=null&&!Number.isNaN(o));if(r.length===0)return()=>50;const l=Math.min(...r),i=Math.max(...r);return i===l?()=>100:o=>{if(o==null||Number.isNaN(o))return null;const s=(o-l)/(i-l)*100;return n?100-s:s}}function zp(e){const t=Yt(e,"performance_pct",!1),n=Yt(e,"cweval_func_pass_pct",!1),r=Yt(e,"cweval_security_pass_pct",!1),l=Yt(e,"avg_cwe_introduced",!0),i=Yt(e,"avg_cost_usd",!0),o=Yt(e,"avg_latency_s",!0),s=Yt(e,"hallucination_rate_pct",!0);return e.map(u=>{const d=[t(u.performance_pct),n(u.cweval_func_pass_pct)].filter(v=>v!==null),y=[r(u.cweval_security_pass_pct),l(u.avg_cwe_introduced)].filter(v=>v!==null),g=(v,_)=>v.length?v.reduce((C,P)=>C+P,0)/v.length:_;return{...u,_scores:{performance:g(d,50),security:g(y,50),cost:i(u.avg_cost_usd)??50,latency:o(u.avg_latency_s)??50,accuracy:s(u.hallucination_rate_pct)??50}}})}function Ss(e,t=12){const n=Math.round(Math.max(0,Math.min(100,e))/100*t);return"█".repeat(n)+"░".repeat(t-n)}const Pp=[{label:"Not important",value:0},{label:"Somewhat important",value:1},{label:"Important",value:2},{label:"Critical",value:3}],xs=3,Zn=[{key:"performance",prompt:"How much does raw problem-solving capability matter?",hint:"Measured by task resolution rate on real GitHub bug-fix benchmarks."},{key:"security",prompt:"How important is minimizing security risk in generated code?",hint:"Measured by static analysis of introduced vulnerabilities and CWE-specific test pass rate."},{key:"cost",prompt:"How sensitive are you to cost per task?",hint:"Average API and inference spend per completed task."},{key:"latency",prompt:"How important is speed?",hint:"Average wall-clock time from task start to a proposed fix."},{key:"accuracy",prompt:"How much does avoiding hallucinated or broken code matter?",hint:"Measured by rate of references to undefined functions or non-existent APIs."}],_i={prompt:"What kind of tool are you looking for?",options:[{label:"An autonomous coding agent",value:"agent"},{label:"A direct model API call, no agent scaffolding",value:"base"},{label:"Either is fine",value:"either"}]},$c={performance:"PERFORMANCE",security:"SECURITY",cost:"COST EFFICIENCY",latency:"LATENCY",accuracy:"ACCURACY"};function jp(){const[e]=de.useState(()=>zp(Np(Ep))),[t,n]=de.useState(null),[r,l]=de.useState(0),[i,o]=de.useState({}),[s,u]=de.useState(null),[d,y]=de.useState(!1),[g,v]=de.useState(null),_=Zn.length+1,C=r>=_,P=de.useCallback(()=>{l(0),o({}),u(null),y(!1),v(null)},[]),V=(a,c)=>{o(m=>({...m,[a]:c})),l(m=>m+1)},p=a=>{u(a),l(c=>c+1)},f=()=>l(a=>Math.max(0,a-1)),h=de.useMemo(()=>!s||s==="either"?e:e.filter(a=>a.type===s),[e,s]),k=de.useMemo(()=>{const a=Object.values(i).reduce((c,m)=>c+m,0);return h.map(c=>{let m;if(a===0){const j=Object.values(c._scores);m=j.reduce((T,D)=>T+D,0)/j.length}else m=Object.entries(i).reduce((j,[T,D])=>j+D*(c._scores[T]??50),0)/a;return{...c,_overall:m}}).sort((c,m)=>m._overall-c._overall)},[h,i]),z=k[0],R=de.useMemo(()=>{var j;if(!z)return null;const a=Object.entries(i).filter(([,T])=>T>0).sort((T,D)=>D[1]-T[1]).map(([T])=>T),c=a.slice(0,2),m=[];return m.push(`Resolves ${z.performance_pct}% of benchmark tasks`),(c.includes("cost")||a.length===0)&&m.push(`at $${(j=z.avg_cost_usd)==null?void 0:j.toFixed(2)}/task`),(c.includes("latency")||a.length===0)&&m.push(`${z.avg_latency_s}s avg latency`),c.includes("security")&&m.push(`${z.cweval_security_pass_pct}% CWEval security pass rate`),c.includes("accuracy")&&m.push(`${z.hallucination_rate_pct}% hallucination rate`),m.join(", ")+"."},[z,i]),x=de.useMemo(()=>{var c;const a=Zn.filter(m=>i[m.key]!==void 0).map(m=>({label:$c[m.key],value:i[m.key],max:3}));return s&&a.push({label:"TOOL TYPE",text:(c=_i.options.find(m=>m.value===s))==null?void 0:c.label}),a},[i,s]);return w.jsxs("div",{className:"advisor-root",children:[w.jsx("style",{children:`
         .advisor-root {
           --bg: #F5F5F1;
