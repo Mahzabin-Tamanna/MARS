@@ -650,8 +650,8 @@ export default function AgentAdvisor() {
           <div className="eyebrow">Benchmarked on SWE-bench Verified + CWEval</div>
           <h1>Which model should you use?</h1>
           <p className="subhead">
-            Answer a few questions about what matters to you. Every recommendation is
-            scored transparently against real benchmark results — you can see the math.
+            Answer a few questions about what matters to you. The Agent-Advisor will recommend the right model or agnet for your task based on your need. Every recommendation is
+            scored transparently against real benchmark results.
           </p>
 
           <div className="data-bar">
