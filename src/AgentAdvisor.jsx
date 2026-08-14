@@ -476,6 +476,11 @@ export default function AgentAdvisor() {
           font-style: italic;
           font-size: 0.8rem;
         }
+        .ledger-next-btn {
+         width: 100%;
+         justify-content: center;
+        margin-top: 1.25rem;
+}
 
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(4px); }
@@ -792,7 +797,24 @@ export default function AgentAdvisor() {
                   ))
                 )}
               </div>
+{!isResults && (
+    <button
+      className="btn btn-primary ledger-next-btn"
+      onClick={() => {
+        if (step < QUESTIONS.length) {
+          answerWeight(QUESTIONS[step].key, weights[QUESTIONS[step].key] ?? 0);
+        } else {
+          answerType(agentType ?? "either");
+        }
+      }}
+    >
+      Next <ArrowRight size={13} />
+    </button>
+  )}
+</div>
+              
             </div>
+
           </div>
         ) : (
           <ResultsView
