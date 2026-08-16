@@ -11,22 +11,22 @@ import { RotateCcw, ArrowRight, ArrowLeft, ChevronDown, ChevronUp, FileText } fr
 const SAMPLE_CSV = `subject,type,provider,model,performance_pct,avg_cost_usd,avg_latency_s,avg_cwe_introduced,hallucination_rate_pct,total_tasks,cweval_func_pass_pct,cweval_security_pass_pct,cweval_total_runs
 claude_code,agent,anthropic,claude-sonnet-5,76.2,0.21,71.0,0.10,2.1,21,79.4,66.7,63
 claude_code_opus_5,agent,anthropic,claude-opus-5,85.7,0.32,58.0,0.08,1.6,21,88.9,74.6,63
-claude_api,base,anthropic,claude-sonnet-5,47.6,0.07,9.2,0.05,4.8,21,71.4,60.3,75
+claude_sonnet_5,base,anthropic,claude-sonnet-5,47.6,0.07,9.2,0.05,4.8,21,71.4,60.3,75
 claude_opus_5,base,anthropic,claude-opus-5,52.4,0.09,11.4,0.03,3.8,21,74.6,65.1,63
-codex_cli,agent,openai,gpt-5.3-codex,47.6,0.18,44.0,0.14,3.3,21,73.0,52.4,63
-gpt_api,base,openai,gpt-4.1,33.3,0.03,6.1,0.09,6.2,21,68.3,57.1,63
-gemini_api,base,google,gemini-3.1-pro-preview,66.7,0.14,40.7,0.00,2.9,21,76.2,36.5,63
-opencode_base,agent,google,gemini-3.1-pro-preview,23.8,0.10,27.3,0.02,5.1,21,60.3,38.1,63
+codex_gpt_5_3,agent,openai,gpt-5.3-codex,47.6,0.18,44.0,0.14,3.3,21,73.0,52.4,63
+gpt_api_4.1,base,openai,gpt-4.1,33.3,0.03,6.1,0.09,6.2,21,68.3,57.1,63
+gemini_api_3_1-pro-preview,base,google,gemini-3.1-pro-preview,66.7,0.14,40.7,0.00,2.9,21,76.2,36.5,63
+opencode_gemini-3_1-pro-preview,agent,google,gemini-3.1-pro-preview,23.8,0.10,27.3,0.02,5.1,21,60.3,38.1,63
 mistral_large3,base,mistral,mistral-large-3,38.1,0.05,11.0,0.00,7.4,12,55.6,44.4,12
 deepseek_v3,base,deepseek,deepseek-v3.2,33.3,0.02,8.7,0.11,8.9,21,60.3,50.8,12
 kimi_2_7,base,moonshot,kimi-k2p7-code,28.6,0.04,13.9,0.16,9.7,21,65.1,65.1,63
 opencode_sonnet5,agent,anthropic,claude-sonnet-5,81.0,0.11,233.6,0.00,1.9,21,76.2,66.7,63
 opencode_opus_5,agent,anthropic,claude-opus-5,76.2,0.15,154.1,0.00,1.4,21,74.6,74.6,63
 opencode_gpt5codex,agent,openai,gpt-5.3-codex,52.4,0.05,95.0,0.00,3.0,21,79.4,68.3,63
-opencode_kimi,agent,moonshot,kimi-k2.5,61.9,0.28,96.2,0.00,4.4,21,71.4,73.0,63
-opencode_kimi27,agent,moonshot,kimi-k2p7-code,52.4,0.04,202.1,0.00,5.0,21,65.1,63.5,63
-opencode_deepseek,agent,deepseek,deepseek-v3.2,42.9,0.03,88.4,0.05,6.6,21,63.5,63.5,63
-opencode_qwen,agent,qwen,qwen3-coder-next,38.1,0.06,120.3,0.08,7.1,21,63.5,63.5,63
+opencode_kimi_2_5,agent,moonshot,kimi-k2.5,61.9,0.28,96.2,0.00,4.4,21,71.4,73.0,63
+opencode_kimi_2_7,agent,moonshot,kimi-k2p7-code,52.4,0.04,202.1,0.00,5.0,21,65.1,63.5,63
+opencode_deepseek_v3,agent,deepseek,deepseek-v3.2,42.9,0.03,88.4,0.05,6.6,21,63.5,63.5,63
+opencode_qwen3_coder_next,agent,qwen,qwen3-coder-next,38.1,0.06,120.3,0.08,7.1,21,63.5,63.5,63
 `;
 // === EMBEDDED_DATA_END ===
 
