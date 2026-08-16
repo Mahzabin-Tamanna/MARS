@@ -103,18 +103,17 @@ License: MIT
  * See the LICENSE file in the root directory of this source tree.
  */const _s=Bn("RotateCcw",[["path",{d:"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8",key:"1357e3"}],["path",{d:"M3 3v5h5",key:"1xhq8a"}]]),Cp=`subject,type,provider,model,performance_pct,avg_cost_usd,avg_latency_s,avg_cwe_introduced,hallucination_rate_pct,total_tasks,cweval_func_pass_pct,cweval_security_pass_pct,cweval_total_runs
 opencode_sonnet5,agent,anthropic,las/bedrock/us.anthropic.claude-sonnet-5,81.0,0.1106,233.6,0.0,0.0,21,76.2,71.4,63.0
-claude_code,agent,anthropic,claude-sonnet-5,76.2,0.3409,84.0,0.0,0.0,21,57.1,42.9,63.0
+claude_code_sonnet_5,agent,anthropic,claude-sonnet-5,76.2,0.3409,84.0,0.0,0.0,21,57.1,42.9,63.0
 claude_code_opus_5,agent,anthropic,claude-opus-5,76.2,0.1465,53.5,0.0,0.0,21,76.2,76.2,63.0
 opencode_opus_5,agent,anthropic,las/bedrock/us.anthropic.claude-opus-5,71.4,0.1602,162.9,0.0,0.0,21,74.6,74.6,63.0
-gemini_api,base,google,gemini/gemini-3.1-pro-preview,66.7,0.1353,40.7,0.0,0.0,21,36.5,33.3,63.0
-claude_code_sonnet5,unknown,unknown,,61.9,0.3409,84.0,0.0,0.0,21,,,
-opencode_kimi,agent,moonshot,las/bedrock/moonshotai.kimi-k2.5,61.9,0.279,96.2,0.0,0.0,21,71.4,55.6,63.0
-codex_cli,agent,openai,openai/gpt-5.3-codex,57.1,0.219,30.9,0.0,0.0,21,23.8,20.6,63.0
+gemini_api_3_1_pro_preview,base,google,gemini/gemini-3.1-pro-preview,66.7,0.1353,40.7,0.0,0.0,21,36.5,33.3,63.0
+opencode_kimi_2_5,agent,moonshot,las/bedrock/moonshotai.kimi-k2.5,61.9,0.279,96.2,0.0,0.0,21,71.4,55.6,63.0
+codex_cli_5_3,agent,openai,openai/gpt-5.3-codex,57.1,0.219,30.9,0.0,0.0,21,23.8,20.6,63.0
 claude_opus_5,base,anthropic,bedrock/us.anthropic.claude-opus-5,52.4,0.0727,8.1,0.0,0.0,21,65.1,68.3,63.0
 opencode_gpt5codex,agent,openai,las/openai/gpt-5.3-codex,52.4,0.053,95.0,0.0,0.0,21,79.4,71.4,63.0
-claude_api,base,anthropic,bedrock/us.anthropic.claude-sonnet-5,47.6,0.0697,11.9,0.0,0.0,21,60.0,40.0,75.0
-gpt_api,base,openai,openai/gpt-4.1,47.6,0.0472,5.4,0.05,0.0,21,57.1,54.0,63.0
-opencode_kimi27,agent,moonshot,las/fireworks_ai/kimi-k2p7-code,42.9,0.0381,224.9,0.0,0.0,21,74.6,60.3,63.0
+claude_sonnet_5,base,anthropic,bedrock/us.anthropic.claude-sonnet-5,47.6,0.0697,11.9,0.0,0.0,21,60.0,40.0,75.0
+gpt_api_4.1,base,openai,openai/gpt-4.1,47.6,0.0472,5.4,0.05,0.0,21,57.1,54.0,63.0
+opencode_kimi2_7,agent,moonshot,las/fireworks_ai/kimi-k2p7-code,42.9,0.0381,224.9,0.0,0.0,21,74.6,60.3,63.0
 mistral_large3,base,mistral,bedrock/mistral.mistral-large-3-675b-instruct,38.1,0.0481,11.0,0.0,0.0,21,50.0,58.3,12.0
 deepseek_v3,base,deepseek,bedrock/deepseek.v3.2,33.3,0.0619,13.5,0.0,0.0,21,50.0,41.7,12.0
 kimi_2_7,base,moonshot,fireworks_ai/kimi-k2p7-code,28.6,0.0753,24.1,0.0,0.0,21,65.1,65.1,63.0
