@@ -808,7 +808,7 @@ export default function AgentAdvisor() {
         }
       }}
     >
-      Next <ArrowRight size={13} />
+      {/* Next <ArrowRight size={13} /> */}
     </button>
   )}
 </div>
