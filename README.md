@@ -1,7 +1,5 @@
 # Agent Advisor
-
-A guided Q&A tool that recommends a coding model or agent based on your
-priorities (performance, security, cost, latency, accuracy), scored
+A user-guided tool that recommends coding models and agents based on your priorities—including performance, security, cost, latency, and accuracy. Scored
 transparently against real SWE-bench Verified + CWEval benchmark results.
 
 **Why this exists**
