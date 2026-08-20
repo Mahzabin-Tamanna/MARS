@@ -1,5 +1,5 @@
-# Agent Advisor
-A user-guided tool that recommends coding models and agents based on your priorities—including performance, security, cost, latency, and accuracy. Scored
+# AIMS (AI Model and Agent Selection)
+A user-guided recommends system that recommend  coding models and agents based on your priorities—including performance, security, cost, latency, and accuracy. Scored
 transparently against real SWE-bench Verified + CWEval benchmark results.
 
 **Why this exists**
