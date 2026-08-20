@@ -1,4 +1,4 @@
-# AIMS (AI Model and Agent Selection)
+# MARS (Model and Agent Recommendation System)
 A user-guided recommends system that recommend  coding models and agents based on your priorities—including performance, security, cost, latency, and accuracy. Scored
 transparently against real SWE-bench Verified + CWEval benchmark results.
 
