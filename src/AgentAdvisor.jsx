@@ -649,7 +649,8 @@ export default function AgentAdvisor() {
         <div className="header">
           <div className="eyebrow">Benchmarked on SWE-bench Verified + CWEval</div>
           <h1>MARS </h1>
-          <h2>(Model and Agent Recommendation System)<span className="beta">Beta</span></h2>
+          <h2>(Model and Agent Recommendation System)</h2>
+          <h6><span className="beta">beta</span></h6>
           <p className="subhead">
             Answer a few questions about what matters to you. The Model and Agent Recommendation System will recommend the right model or agnet for your task based on your need. Every recommendation is
             scored transparently against real evaluation and benchmark results.
