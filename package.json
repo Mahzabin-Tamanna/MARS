@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://YOUR_GITHUB_USERNAME.github.io/agent-advisor",
+  "homepage": "https://mahzabin-tamanna.github.io/MARS/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
